@@ -9,7 +9,10 @@ var requestComplete = function(){
   if(this.status !== 200) return;
   var jsonString = this.responseText;
   var students = JSON.parse(jsonString);
+  setup(students);
+};
 
+var setup = function(students){
   var harry = getStudentFromApi(students, "Harry Potter");
   var harryDiv = document.getElementById('harry');
   var harryImage = document.getElementById('harry-img');
