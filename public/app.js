@@ -12,15 +12,18 @@ var requestComplete = function(){
 
   var harry = getStudentFromApi(students, "Harry Potter");
   var harryDiv = document.getElementById('harry');
-  setStudentListener(harry, harryDiv);
+  var harryImage = document.getElementById('harry-img');
+  setStudentListener(harry, harryImage, harryDiv);
 
   var ron = getStudentFromApi(students, "Ron Weasley");
   var ronDiv = document.getElementById('ron');
-  setStudentListener(ron, ronDiv);
+  var ronImage = document.getElementById('ron-img');
+  setStudentListener(ron, ronImage, ronDiv);
 
   var hermione = getStudentFromApi(students, "Hermione Granger");
   var hermioneDiv = document.getElementById('hermione');
-  setStudentListener(hermione, hermioneDiv);
+  var hermioneImage = document.getElementById('hermione-img');
+  setStudentListener(hermione, hermioneImage, hermioneDiv);
 };
 
 var getStudentFromApi = function(students, studentName){
@@ -31,12 +34,11 @@ var getStudentFromApi = function(students, studentName){
   }
 };
 
-var setStudentListener = function(student, div){
-  var harryDiv = document.getElementById('harry');
-  div.addEventListener('mouseover', function(){
+var setStudentListener = function(student, image, div){
+  image.addEventListener('mouseover', function(){
     addStudentText(div, student);
   });
-  div.addEventListener('mouseout', function(){
+  image.addEventListener('mouseout', function(){
     removeStudentText(div, student);
   })
 };
