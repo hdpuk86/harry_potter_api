@@ -9,7 +9,7 @@ var requestComplete = function(){
   if(this.status !== 200) return;
   var jsonString = this.responseText;
   var students = JSON.parse(jsonString);
-  setupSlytherin(students);
+  setupGryffindor(students);
   setSelectListener(students);
 };
 
@@ -64,16 +64,16 @@ var setStudentListener = function(student, image, div){
     addStudentText(div, student);
   });
   image.addEventListener('mouseout', function(){
-    removeStudentText(div, student);
+    if(div.children.length > 1){
+      div.removeChild(div.lastChild);
+    }
   })
 };
 
-var removeStudentText = function(div, student){
-  var ul = document.getElementById(student.name);
-  div.removeChild(ul);
-};
-
 var addStudentText = function(div, student){
+  if(div.children.length > 1){
+    div.removeChild(div.lastChild);
+  }
   var ul = document.createElement('ul');
   ul.id = student.name;
   ul.className = "student-text";
