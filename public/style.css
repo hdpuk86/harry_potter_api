@@ -6,6 +6,7 @@ body {
 }
 
 main {
+  background-size: cover;
   background-repeat: no-repeat;
   margin: 20px;
 }
@@ -15,20 +16,23 @@ div {
   padding: 0px;
 }
 
+li {
+  font-size: 1em;
+}
+
 ul {
+  list-style: none;
+}
+
+.student-text {
   width: 600px;
   background-image: url('scroll.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  list-style: none;
   text-align: left;
   padding-top: 3em;
   padding-left: 1em;
-}
-
-li {
-  font-size: 1em;
 }
 
 .character-img {
@@ -50,7 +54,7 @@ li {
   align-items: flex-end;
 }
 
-#moving-portrait {
+#moving {
   width: 200px;
   align-self: flex-start;
 }
