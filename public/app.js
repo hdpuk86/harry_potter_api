@@ -9,24 +9,27 @@ var requestComplete = function(){
   if(this.status !== 200) return;
   var jsonString = this.responseText;
   var students = JSON.parse(jsonString);
-  setup(students);
+  setupGryffindor(students);
 };
 
-var setup = function(students){
-  var harry = getStudentFromApi(students, "Harry Potter");
-  var harryDiv = document.getElementById('harry');
-  var harryImage = document.getElementById('harry-img');
-  setStudentListener(harry, harryImage, harryDiv);
+var setupGryffindor = function(students){
+  document.getElementById('main').style.backgroundImage = "url('gryffindor_room.jpeg')";
 
-  var ron = getStudentFromApi(students, "Ron Weasley");
-  var ronDiv = document.getElementById('ron');
-  var ronImage = document.getElementById('ron-img');
-  setStudentListener(ron, ronImage, ronDiv);
+  var portrait = document.getElementById('moving-portrait');
+  portrait.src = "dumble.gif";
 
-  var hermione = getStudentFromApi(students, "Hermione Granger");
-  var hermioneDiv = document.getElementById('hermione');
-  var hermioneImage = document.getElementById('hermione-img');
-  setStudentListener(hermione, hermioneImage, hermioneDiv);
+  setupStudent(students, "Harry Potter", "harry.png", "char1");
+  setupStudent(students, "Ron Weasley", "ron.png", "char2");
+  setupStudent(students, "Hermione Granger", "hermione.png", "char3");
+
+};
+
+var setupStudent = function(students, name, imageSrc, studentNumber){
+  var student = getStudentFromApi(students, name);
+  var studentDiv = document.getElementById(studentNumber);
+  var studentImage = document.getElementById(studentNumber + '-img');
+  studentImage.src = imageSrc;
+  setStudentListener(student, studentImage, studentDiv);
 };
 
 var getStudentFromApi = function(students, studentName){
