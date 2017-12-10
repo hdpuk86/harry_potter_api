@@ -9,7 +9,18 @@ var requestComplete = function(){
   if(this.status !== 200) return;
   var jsonString = this.responseText;
   var students = JSON.parse(jsonString);
-  addStudentDetails(students);
+
+  var harry = getStudentFromApi(students, "Harry Potter");
+  var harryDiv = document.getElementById('harry');
+  setStudentListener(harry, harryDiv);
+
+  var ron = getStudentFromApi(students, "Ron Weasley");
+  var ronDiv = document.getElementById('ron');
+  setStudentListener(ron, ronDiv);
+
+  var hermione = getStudentFromApi(students, "Hermione Granger");
+  var hermioneDiv = document.getElementById('hermione');
+  setStudentListener(hermione, hermioneDiv);
 };
 
 var getStudentFromApi = function(students, studentName){
@@ -20,30 +31,32 @@ var getStudentFromApi = function(students, studentName){
   }
 };
 
-var addStudentDetails = function(students){
-  var harry = getStudentFromApi(students, "Harry Potter");
-  var ron = getStudentFromApi(students, "Ron Weasley");
-  var hermione = getStudentFromApi(students, "Hermione Granger");
-
+var setStudentListener = function(student, div){
   var harryDiv = document.getElementById('harry');
-  var ronDiv = document.getElementById('ron');
-  var hermioneDiv = document.getElementById('hermione');
+  div.addEventListener('mouseover', function(){
+    addStudentText(div, student);
+  });
+  div.addEventListener('mouseout', function(){
+    removeStudentText(div, student);
+  })
+};
 
-  addStudentText(harryDiv, harry);
-  addStudentText(ronDiv, ron);
-  addStudentText(hermioneDiv, hermione);
+var removeStudentText = function(div, student){
+  var ul = document.getElementById(student.name);
+  div.removeChild(ul);
 };
 
 var addStudentText = function(div, student){
   var ul = document.createElement('ul');
+  ul.id = student.name;
   var name = document.createElement('li');
-  name.innerText = student.name;
+  name.innerText = "Name: " + student.name;
   var dob = document.createElement('li');
-  dob.innerText = student.dateOfBirth;
+  dob.innerText = "D.O.B: " + student.dateOfBirth;
   var ancestry = document.createElement('li');
-  ancestry.innerText = student.ancestry;
+  ancestry.innerText = "Ancestry: " +  student.ancestry;
   var patronus = document.createElement('li');
-  patronus.innerText = student.patronus;
+  patronus.innerText = "Patronus: " + student.patronus;
   ul.appendChild(name);
   ul.appendChild(dob);
   ul.appendChild(ancestry);

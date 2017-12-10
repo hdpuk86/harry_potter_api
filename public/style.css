@@ -11,15 +11,19 @@ div {
 
 ul {
   background-color: rgba(255, 255, 153, 0.5);
+  list-style: none;
+  text-align: left;
+  padding: 3px;
 }
 
-.character {
+.character-img {
   height: 300px;
 }
 
 .character-holder {
   display: flex;
   flex-direction: row;
+  width: 400px;
 }
 
 #image-holder {
