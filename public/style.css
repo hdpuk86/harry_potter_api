@@ -4,10 +4,18 @@ body {
   background-color: black;
 }
 
+.character {
+  height: 300px;
+}
+
 #image-holder {
   width: 1220px;
   height: 680px;
   margin: 20px;
   background-image: url('https://78.media.tumblr.com/090146a8b2d37dfc5c455299c51b1cbf/tumblr_oh5oq2pMdt1vitic2o1_1280.jpg');
   background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
 }
