@@ -61,9 +61,11 @@ var getStudentFromApi = function(students, studentName){
 
 var setStudentListener = function(student, image, div){
   image.addEventListener('mouseover', function(){
+    //add a temporary ul
     addStudentText(div, student);
   });
   image.addEventListener('mouseout', function(){
+    //delete the temporary ul without deleting the image
     if(div.children.length > 1){
       div.removeChild(div.lastChild);
     }
@@ -71,25 +73,26 @@ var setStudentListener = function(student, image, div){
 };
 
 var addStudentText = function(div, student){
+  //delete the ul of the previous student
   if(div.children.length > 1){
     div.removeChild(div.lastChild);
   }
+  //create a new ul
   var ul = document.createElement('ul');
   ul.id = student.name;
   ul.className = "student-text";
-  var name = document.createElement('li');
-  name.innerText = "Name: " + student.name;
-  var dob = document.createElement('li');
-  dob.innerText = "D.O.B: " + student.dateOfBirth;
-  var ancestry = document.createElement('li');
-  ancestry.innerText = "Ancestry: " +  student.ancestry;
-  var patronus = document.createElement('li');
-  patronus.innerText = "Patronus: " + student.patronus;
-  ul.appendChild(name);
-  ul.appendChild(dob);
-  ul.appendChild(ancestry);
-  ul.appendChild(patronus);
+  //create and append the list
+  createAndAppendLi(ul, student.name, "Name");
+  createAndAppendLi(ul, student.dateOfBirth, "D.O.B");
+  createAndAppendLi(ul, student.ancestry, "Ancestry");
+  createAndAppendLi(ul, student.patronus, "Patronus");
   div.appendChild(ul);
+};
+
+var createAndAppendLi = function(ul, attribute, label){
+  var element = document.createElement('li');
+  element.innerText = label + ": " + attribute;
+  ul.append(element);
 };
 
 var app = function(){
